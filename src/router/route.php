@@ -1,7 +1,17 @@
 <?php
 
-namespace Src\Router\Route;
+namespace Src\Router;
 
 class Route
 {
+    public $method;
+    public $path;
+    public $callback;
+
+    public function __construct(string $method, string $path, callable $callback)
+    {
+        $this->method = $method;
+        $this->path = $path;
+        $this->callback = $callback;
+    }
 }
