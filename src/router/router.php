@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Src\Router;
 
+use Exception;
+
 class Router
 {
     private $routes = [];
 
-    public function setRoute(Route $route)
+    public function addRoute(Route $route)
     {
         array_push($this->routes, $route);
     }
@@ -18,18 +20,20 @@ class Router
         return $this->routes;
     }
 
-    public function selectRoute(string $method, string $path)
+    public function findRoute(string $method, string $path)
     {
-        $selectedRoute = array_filter($this->routes, fn ($route) => $this->findRoute($route, $method, $path))[0];
+        $selectedRoute = array_filter($this->routes, fn ($route) => $this->selectRoute($route, $method, $path))[0];
 
         if (!$selectedRoute) {
-            return '404';
+            throw new Exception("Page not found");
         }
 
-        call_user_func($selectedRoute->callback);
+        if ($selectedRoute->callback) {
+            call_user_func($selectedRoute->callback);
+        }
     }
 
-    private function findRoute(Route $route, string $method, string $path)
+    private function selectRoute(Route $route, string $method, string $path)
     {
         if ($route->method === $method && $route->path === $path) {
             return $route;

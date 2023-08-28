@@ -8,7 +8,7 @@ class Route
     public $path;
     public $callback;
 
-    public function __construct(string $method, string $path, callable $callback)
+    public function __construct(string $method, string $path, callable $callback = null)
     {
         $this->method = $method;
         $this->path = $path;
