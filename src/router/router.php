@@ -22,7 +22,8 @@ class Router
 
     public function findRoute(string $method, string $path)
     {
-        $selectedRoute = array_filter($this->routes, fn ($route) => $this->selectRoute($route, $method, $path))[0];
+        $filter = array_filter($this->routes, fn ($route) => $this->selectRoute($route, $method, $path));
+        $selectedRoute = array_shift($filter);
 
         if (!$selectedRoute) {
             throw new Exception("Page not found");
