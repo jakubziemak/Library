@@ -6,12 +6,12 @@ class Route
 {
     public $method;
     public $path;
-    public $callback;
+    public $filepath;
 
-    public function __construct(string $method, string $path, callable $callback = null)
+    public function __construct(string $method, string $path, string $filepath = null)
     {
         $this->method = $method;
         $this->path = $path;
-        $this->callback = $callback;
+        $this->filepath = $filepath;
     }
 }

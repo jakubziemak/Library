@@ -29,8 +29,8 @@ class Router
             throw new Exception("Page not found");
         }
 
-        if ($selectedRoute->callback) {
-            call_user_func($selectedRoute->callback);
+        if ($selectedRoute->filepath) {
+            return $selectedRoute->filepath;
         }
     }
 
