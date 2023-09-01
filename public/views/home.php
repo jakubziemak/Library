@@ -1,13 +1,10 @@
-<html lang="en">
+<?php
+$heading = "TETETETST";
+require_once('./public/views/partials/head.php');
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-</head>
-
-<body>
+<main>
     <h1>BORKS</h1>
-</body>
+</main>
 
-</html>
+<?php require_once('./public/views/partials/footer.php'); ?>
