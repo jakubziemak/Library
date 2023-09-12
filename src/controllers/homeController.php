@@ -1,6 +1,14 @@
 <?php
 
-declare(strict_types=1);
-require_once('./public/views/home.php');
+namespace Src\Controllers;
 
-$db->getFullTable('books');
+require_once('./src/controllers/PageController.php');
+
+use Src\Controllers\PageController;
+
+class HomeController extends PageController
+{
+    public function getDB()
+    {
+    }
+}
