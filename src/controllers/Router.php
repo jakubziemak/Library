@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Src\Router;
+namespace Src\Controllers;
 
 use Exception;
+use Src\Models\Route;
 
 class Router
 {
-    private $routes = [];
+    private array $routes = [];
 
     public function addRoute(Route $route)
     {
@@ -29,14 +30,12 @@ class Router
             throw new Exception("Page not found");
         }
 
-        if ($selectedRoute->filepath) {
-            return $selectedRoute->filepath;
-        }
+        $selectedRoute->runController();
     }
 
     private function selectRoute(Route $route, string $method, string $path)
     {
-        if ($route->method === $method && $route->path === $path) {
+        if ($route->getMethod() === $method && $route->getURLPath() === $path) {
             return $route;
         }
     }
