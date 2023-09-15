@@ -2,24 +2,27 @@
 
 declare(strict_types=1);
 
-require_once('./src/database/DataBase.php');
-require_once('./src/router/Route.php');
-require_once('./src/router/Router.php');
+session_start();
 
-use Src\Router\Route;
-use Src\Router\Router;
-use Src\Database\DataBase;
+require_once('./config/db_config.php');
+require_once('./src/controllers/HomeController.php');
+require_once('./src/controllers/PageController.php');
+require_once('./src/models/Route.php');
+require_once('./src/controllers/Router.php');
 
-$db = new DataBase();
-$db->connectToDb('mysql:host=127.0.0.1:3306;dbname=library', 'root', 'root');
+use Src\Controllers\HomeController;
+use Src\Controllers\PageController;
+use Src\Models\Route;
+use Src\Controllers\Router;
+
+$db = new PDO($dsn, $username, $password);
+
+$homePage = new HomeController('Home', './public/views/home.php', $db);
 
 $router = new Router();
 
-$router->addRoute(new Route('GET', '/', './public/views/home.php'));
-$router->addRoute(new Route('GET', '/create', './public/views/create.php'));
+$router->addRoute(new Route('GET', '/', [$homePage, 'printPage']));
+// $router->addRoute(new Route('GET', '/create'));
+// $router->addRoute(new Route('GET', '/about'));
 
-try {
-    require_once($router->findRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']));
-} catch (Exception $e) {
-    require_once('./public/views/404.php');
-}
+$router->findRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
