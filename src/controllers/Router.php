@@ -27,7 +27,9 @@ class Router
         $selectedRoute = array_shift($filter);
 
         if (!$selectedRoute) {
-            throw new Exception("Page not found");
+            require_once('./public/views/404.php');
+
+            return;
         }
 
         $selectedRoute->runController();

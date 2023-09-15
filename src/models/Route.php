@@ -6,13 +6,13 @@ class Route
 {
     private string $method;
     private string $URLPath;
-    private array $cb;
+    private array $callback;
 
-    public function __construct(string $method, string $URLPath, array $cb)
+    public function __construct(string $method, string $URLPath, array $callback)
     {
         $this->method = $method;
         $this->URLPath = $URLPath;
-        $this->cb = $cb;
+        $this->callback = $callback;
     }
 
     public function getMethod(): string
@@ -26,6 +26,6 @@ class Route
     }
     public function runController()
     {
-        call_user_func($this->cb);
+        call_user_func($this->callback);
     }
 }
