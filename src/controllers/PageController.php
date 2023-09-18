@@ -4,21 +4,34 @@ declare(strict_types=1);
 
 namespace Src\Controllers;
 
-use Src\Database\DataBase;
+use PDO;
 
 class PageController
 {
-    private string $pageTitle;
-    private DataBase $db;
+    protected string $pageTitle = 'Library - ';
+    protected PDO $pdo;
+    protected string $view;
 
-    public function __construct(DataBase $db, string $pageTitle)
+    public function __construct(string $pageTitle, string $view, PDO $pdo)
     {
-        $this->db = $db;
-        $this->pageTitle = $pageTitle;
+        $this->pdo = $pdo;
+        $this->pageTitle .= $pageTitle;
+        $this->view = $view;
     }
 
-    public function getPageTitle()
+    public function printPage()
+    {
+        $this->setSessionvariables();
+        require_once($this->view);
+    }
+
+    protected function getPageTitle()
     {
         return $this->pageTitle;
+    }
+
+    protected function setSessionvariables()
+    {
+        $_SESSION['pageTitle'] = $this->getPageTitle();
     }
 }
