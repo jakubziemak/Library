@@ -1,4 +1,4 @@
-<header class="bg-cyan-700 px-4 py-8 text-gray-100">
+<header class="bg-cyan-700 px-4 py-8 text-gray-100 overflow-hidden">
     <div class="max-w-screen-lg mx-auto flex gap-x-8">
         <a class="text-3xl grow" href="/">
             <h1 class="">Library</h1>
