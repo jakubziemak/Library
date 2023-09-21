@@ -18,11 +18,12 @@ use Src\Controllers\Router;
 $db = new PDO($dsn, $username, $password);
 
 $homePage = new HomeController('Home', './public/views/home.php', $db);
+$aboutPage = new PageController('Home', './public/views/about.php', $db);
 
 $router = new Router();
 
 $router->addRoute(new Route('GET', '/', [$homePage, 'printPage']));
+$router->addRoute(new Route('GET', '/about', [$aboutPage, 'printPage']));
 // $router->addRoute(new Route('GET', '/create'));
-// $router->addRoute(new Route('GET', '/about'));
 
 $router->findRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
