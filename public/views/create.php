@@ -1,13 +1,12 @@
-<html lang="en">
+<?php
+require_once('./public/views/partials/head.php');
+require_once('./public/views/partials/nav.php');
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<main id="create-page" class="grow bg-gray-100 px-4 py-20">
+    <?php require_once('./public/views/partials/form.php') ?>
+</main>
 
-<body>
-    <h1>CREATE</h1>
-</body>
+<?php require_once('./public/views/partials/footer.php'); ?>
 
-</html>
+<script type="module" src="./public/assets/createPage.js"></script>
